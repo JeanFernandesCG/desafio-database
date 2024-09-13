@@ -16,3 +16,23 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('telaInicial');
 });
+
+Route::get('/relatorio1', function () {
+    return view('relatorio1');
+});
+
+Route::get('/relatorio2', function () {
+    return view('relatorio2');
+});
+
+Route::get('/relatorio3', function () {
+    return view('relatorio3');
+});
+
+Route::get('/relatorio4', function () {
+    return view('relatorio4');
+});
+
+Route::get('/relatorio5', function () {
+    return view('relatorio5');
+});

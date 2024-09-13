@@ -11,19 +11,12 @@
         <h1>Desafio de Banco de Dados</h1>
     </header>
     <div class="container">
-    <nav>
-            <a href="relatorio1">Relatório 1</a>
-            <a href="relatorio2">Relatório 2</a>
-            <a href="relatorio3">Relatório 3</a>
-            <a href="relatorio4">Relatório 4</a>
-            <a href="relatorio5">Relatório 5</a>
-     </nav>
         <section>
-            <h2>Sistema de Relatorios</h2>
-            <p>Selecione uma das opções para visualização dos Relatorios</p>
+            <h2>Relatorio 4</h2>
+            <p>testes testes testestestes testes testestestes testes testestestes testes testes</p>
         </section>
         <section>
-            <p>Criado por Jean Fernandes</p>
+            <p>Jean Fernandes</p>
         </section>
     </div>
 </body>
@@ -52,19 +45,6 @@
             background: #fff;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        nav {
-            margin: 1rem 0;
-        }
-        nav a {
-            color: #333;
-            padding: 0.5rem 1rem;
-            text-decoration: none;
-            display: inline-block;
-        }
-        nav a:hover {
-            background: #ddd;
-            border-radius: 5px;
         }
         
     </style>
