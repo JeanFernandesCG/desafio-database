@@ -1,6 +1,6 @@
-CREATE DATABASE desafio_banco_dados;
+CREATE DATABASE desafio_bd;
 
-USE desafio_banco_dados;
+USE desafio_bd;
 
 CREATE TABLE
     cadastros (
