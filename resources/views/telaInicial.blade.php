@@ -22,9 +22,10 @@
         </nav>
         <section>
             <h2>Sistema de Relatorios</h2>
-            <p>Sistema de Relatorios desenvolvido para o desafio da DouraSoft,
-                feito com (PHP)Laravel e MySQL, usando scripts(faker) para crição dos dados do BD.
-                Para acessar os relatorios basta clicar em uma das 5 opções de relatorios.</p>
+            <p>Sistema de Relatórios desenvolvido para o desafio da DouraSoft,
+                utilizando PHP com o framework Laravel e MySQL.
+                Os dados foram gerados automaticamente usando o Faker para preenchimento do banco de dados.
+                Para acessar os relatórios, basta selecionar uma das 5 opções disponíveis acima.</p>
         </section>
         <section>
             <p>Criado por Jean Fernandes</p>

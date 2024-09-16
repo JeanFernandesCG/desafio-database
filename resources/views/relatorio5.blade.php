@@ -1,3 +1,45 @@
+<?php
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "desafio_bd";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Falha na conexão: " . $conn->connect_error);
+}
+
+$relatorio = "";
+
+$sql = "SELECT categorias.titulo, MONTH(lancamentos.liquidacao) as mes, SUM(lancamentos.valor_liquidado) as total_despesa
+        FROM lancamentos
+        LEFT JOIN categorias ON lancamentos.categoria_id = categorias.id
+        WHERE lancamentos.tipo = 'receber' AND lancamentos.status = 'liquidado'
+        GROUP BY categorias.titulo, MONTH(lancamentos.liquidacao)
+        ORDER BY MONTH(lancamentos.liquidacao) ASC";
+
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $relatorio .= "<table>";
+    $relatorio .= "<tr><th>Categoria</th><th>Mês</th><th>Total Despesas</th></tr>";
+    while ($row = $result->fetch_assoc()) {
+        $relatorio .= "<tr>
+            <td>{$row['titulo']}</td>
+            <td>{$row['mes']}</td>
+            <td>{$row['total_despesa']}</td>
+        </tr>";
+    }
+    $relatorio .= "</table>";
+} else {
+    $relatorio = "Nenhum registro encontrado.";
+}
+
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -11,18 +53,20 @@
 <body>
 
     <div class="container">
-        <button onclick="window.location.href='/'">Voltar à Home</button>
+        <button onclick="window.location.href='/desafio-database/public/'">Voltar</button>
         <h1>Relatório 5</h1>
 
         <div class="description">
-        Total de despesas liquidadas, por categoria mensal: - Este relatorio mostra as despesas liquidadas por categoria e por mes.
+            Total de despesas liquidadas, por categoria mensal:
         </div>
 
         <div class="box">
-            <div class="order-form">
-            </div>
-            <h3>Resultado do Relatório do Cadastros e Tags</h3>
-
+            <h3>Resultado do Relatório</h3>
+            <?php if (!empty($relatorio)) {
+                echo $relatorio;
+            } else {
+                echo "Nenhum dado encontrado.";
+            } ?>
         </div>
 
     </div>

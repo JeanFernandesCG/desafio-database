@@ -1,3 +1,46 @@
+<?php
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "desafio_bd";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Falha na conexão: " . $conn->connect_error);
+}
+
+$relatorio = "";
+
+$sql = "SELECT cadastros.nome, cadastros.estado, cadastros.cidade, GROUP_CONCAT(tags.titulo SEPARATOR ', ') as tags 
+        FROM cadastros
+        LEFT JOIN cadastros_tags ON cadastros.id = cadastros_tags.cadastro_id
+        LEFT JOIN tags ON cadastros_tags.tag_id = tags.id
+        GROUP BY cadastros.id
+        ORDER BY cadastros.nome ";
+
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $relatorio .= "<table>";
+    $relatorio .= "<tr><th>Nome</th><th>Estado</th><th>Cidade</th><th>Tags</th></tr>";
+    while ($row = $result->fetch_assoc()) {
+        $relatorio .= "<tr>
+            <td>{$row['nome']}</td>
+            <td>{$row['estado']}</td>
+            <td>{$row['cidade']}</td>
+            <td>{$row['tags']}</td>
+        </tr>";
+    }
+    $relatorio .= "</table>";
+} else {
+    $relatorio = "Nenhum registro encontrado.";
+}
+
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -11,18 +54,20 @@
 <body>
 
     <div class="container">
-        <button onclick="window.location.href='/'">Voltar à Home</button>
+        <button onclick="window.location.href='/desafio-database/public/'">Voltar</button>
         <h1>Relatório 1</h1>
 
         <div class="description">
-            Lista de cadastros com tags: - Este relatório exibe uma lista de cadastros com suas respectivas tags.
+            Lista de cadastros com tags:
         </div>
 
         <div class="box">
-            <div class="order-form">
-            </div>
             <h3>Resultado do Relatório</h3>
-
+            <?php if (!empty($relatorio)) {
+                echo $relatorio;
+            } else {
+                echo "Nenhum dado encontrado.";
+            } ?>
         </div>
 
     </div>
