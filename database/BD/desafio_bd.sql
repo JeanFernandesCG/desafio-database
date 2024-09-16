@@ -5,18 +5,18 @@ USE desafio_bd;
 CREATE TABLE
     cadastros (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        nome VARCHAR(100) NOT NULL,
-        documento VARCHAR(20) NOT NULL,
-        cep VARCHAR(10) NOT NULL,
-        estado VARCHAR(2) NOT NULL,
-        cidade VARCHAR(50) NOT NULL,
-        endereco VARCHAR(100) NOT NULL
+        nome VARCHAR(255) NOT NULL,
+        documento VARCHAR(14) UNIQUE
+        cep VARCHAR(9) NOT NULL,
+        estado CHAR(2) NOT NULL,
+        cidade VARCHAR(150) NOT NULL,
+        endereco VARCHAR(255) NOT NULL
     );
 
 CREATE TABLE
     tags (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        titulo VARCHAR(50) NOT NULL
+        titulo VARCHAR(150) NOT NULL
     );
 
 CREATE TABLE
